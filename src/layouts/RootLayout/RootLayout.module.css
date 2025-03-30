@@ -1,0 +1,44 @@
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh
+}
+
+.header {
+  background-color: #1e1e1e;
+  padding: 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.navButton {
+  background-color: #7B3F99;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 15px 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.navButton:hover {
+  background-color: #6e1b97;
+}
+
+.footer {
+  background-color: #1e1e1e;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  color: #ddd;
+  margin-top: auto; 
+}

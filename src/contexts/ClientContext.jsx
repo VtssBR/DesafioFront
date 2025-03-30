@@ -43,17 +43,20 @@ export const ClientProvider = ({ children }) => {
 
     }
 
-
-    // ALTERAR A LOGICA PARA ATUALIZAR 
-    const updateClientState = async (formUpdateData , id) => {
+    const updateClientState = async (formUpdateData, id) => {
         try {
-            const updatedClient = await attClient(formUpdateData, id)
-            setClient(updatedClient)
+            const updatedClient = await attClient(formUpdateData, id);
+            setClients((prevClients) =>
+                prevClients.map((client) => 
+                    client.id === id ? updatedClient : client
+                )
+            );
+            setClient(updatedClient);
+            
         } catch (error) {
-            setError(error.message)
+            setError(error.message);
         }
-
-    }
+    };
 
     const deleteClientState = async (id) => {
         try {

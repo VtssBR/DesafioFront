@@ -10,9 +10,11 @@ export default function RowClients() {
     const handleDelete = async (id) => {
         if (window.confirm("Tem certeza que deseja excluir este cliente?")) {
             await deleteClientState(id); 
+            window.location.reload();
         }
-        window.location.reload();
+        
     };
+
 
     return (
         <div>
@@ -37,7 +39,7 @@ export default function RowClients() {
                                 <td>{client.dataNascimento}</td>
                                 <td>{client.endereco}</td>
                                 <td className={styles.actions}>
-                                    <Link to="/updateClient"><button className={styles.btnPrimary}>Editar</button></Link>
+                                    <Link to={`/update/${client.id}`}><button className={styles.btnPrimary}>Editar</button></Link>
                                     <button 
                                         className={styles.btnDanger} 
                                         onClick={() => handleDelete(client.id)}
