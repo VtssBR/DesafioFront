@@ -1,5 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import { ClientProvider } from "./contexts/ClientContext";
+import { ContactProvider } from "./contexts/ContactContext";
 import router from "./router";
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
   return (
     <>
       <ClientProvider>
-        <RouterProvider router={router} />
+        <ContactProvider>
+          <RouterProvider router={router} />
+        </ContactProvider>
       </ClientProvider>
     </>
   )

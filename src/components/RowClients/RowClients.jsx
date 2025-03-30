@@ -44,7 +44,7 @@ export default function RowClients() {
                                         className={styles.btnDanger} 
                                         onClick={() => handleDelete(client.id)}
                                     >Excluir</button>
-                                    <Link to="/contacts"><button className={styles.btnSuccess}>Visualizar Contatos</button></Link>
+                                    <Link to={`/list/${client.id}`}><button className={styles.btnSuccess}>Visualizar Contatos</button></Link>
                                 </td>
                             </tr>
                         ))}
