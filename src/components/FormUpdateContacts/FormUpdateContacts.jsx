@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ContactContext } from "../../contexts/ContactContext"; 
+import { ContactContext } from "../../contexts/ContactContext";
 import styles from "./FormUpdateContacts.module.css";
 
 export default function FormUpdateContacts() {
@@ -12,7 +12,7 @@ export default function FormUpdateContacts() {
         observacao: ""
     });
 
-    const [selectedFields, setSelectedFields] = useState({
+    const [selectedFields, setSelectedFields] = useState({ 
         tipo: false,
         valor: false,
         observacao: false
@@ -38,7 +38,7 @@ export default function FormUpdateContacts() {
         event.preventDefault();
 
         const contactData = Object.fromEntries(
-            Object.entries(formData).map(([key, value]) => [key, value.trim() === "" ? null : value])
+            Object.entries(formData).map(([key, value]) => [key, value.trim() === "" ? null : value]) // Caso cliente nao informe algum campo, envia null para api no qual esta sendo tratada o null
         );
 
         try {

@@ -40,7 +40,7 @@ export default function FormUpdateClients() {
         event.preventDefault();
 
         const clientData = Object.fromEntries(
-            Object.entries(formData).map(([key, value]) => [key, value.trim() === "" ? null : value])
+            Object.entries(formData).map(([key, value]) => [key, value.trim() === "" ? null : value]) // Caso cliente nao informe algum campo, envia null para api no qual esta sendo tratada o null
         );
 
         try {

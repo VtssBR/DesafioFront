@@ -5,9 +5,7 @@ import styles from "./FormCreateContacts.module.css";
 
 export default function FormCreateContacts() {
     const { createContactState } = useContext(ContactContext);
-    const { id: clientId } = useParams();
-
-    console.log("Client ID recebido:", clientId); // 🔍 Verifica se o clientId está correto
+    const { id: clientId } = useParams(); // Utiliza o clientId para criacao do contato vinculado ao cliente
 
     const [formData, setFormData] = useState({
         tipo: "", 
@@ -17,8 +15,6 @@ export default function FormCreateContacts() {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(`Campo atualizado: ${name} -> ${value}`); // 🔍 Verifica mudanças nos inputs
-
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
@@ -29,17 +25,15 @@ export default function FormCreateContacts() {
         event.preventDefault();
 
         const contactData = {
-            clientId: Number(clientId), // Certifique-se de que o ID está correto
+            clientId: Number(clientId), 
             tipo: formData.tipo,
             valor: formData.valor,
             observacao: formData.observacao
         };
 
-        console.log("Dados a serem enviados:", contactData); // 🔍 Verifica os dados antes do envio
-
         try {
             await createContactState(contactData);
-            console.log("Contato criado com sucesso:", contactData);
+            console.log("Contato criado com sucesso:");
             setFormData({ tipo: "", valor: "", observacao: "" });
         } catch (error) {
             console.error("Erro ao criar contato:", error);
@@ -58,7 +52,7 @@ export default function FormCreateContacts() {
                 className={styles.input}
                 required
             >
-                <option value="">Selecione um tipo</option> {/* 🔧 Adiciona uma opção vazia */}
+                <option value="">Selecione um tipo</option>
                 <option value="Celular">Celular</option>
                 <option value="Email">Email</option>
             </select>

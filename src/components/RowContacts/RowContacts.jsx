@@ -33,9 +33,9 @@ export default function RowContacts() {
     return (
         <div>
             <div className={styles.divButton}>
-                        <Link to={`/createContact/${id}`}>
-                            <button className={styles.btnAddContact}>Adicionar Contato</button>
-                        </Link>
+                <Link to={`/createContact/${id}`}>
+                    <button className={styles.btnAddContact}>Adicionar Contato</button>
+                </Link>
             </div>
             {!contacts || contacts.length === 0 ? (
                 <p>Nenhum contato encontrado.</p>

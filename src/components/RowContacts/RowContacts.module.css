@@ -30,10 +30,12 @@
   display: flex;
   gap: 10px;
 }
+
 .divButton {
   display: flex;
   justify-content: flex-end;
-  width: 80%; /* Igual à largura da tabela */
+  width: 80%;
+  /* Igual à largura da tabela */
   margin: 20px auto;
 }
 
@@ -50,7 +52,7 @@
 
 .btnContact:hover {
   opacity: 0.8;
-  background-color:  #6e1b97
+  background-color: #6e1b97
 }
 
 .btnAddContact {
@@ -66,5 +68,5 @@
 
 .btnAddContact:hover {
   opacity: 0.8;
-  background-color:  #6e1b97
+  background-color: #6e1b97
 }

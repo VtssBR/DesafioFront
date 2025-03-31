@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ClientContext } from "../../contexts/ClientContext";
 import styles from "./RowClients.module.css";
-import { Link , useParams} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function RowClients() {
     const { clients } = useContext(ClientContext);
