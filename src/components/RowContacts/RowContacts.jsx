@@ -1,19 +1,19 @@
-import { useContext, useEffect} from "react";
+import { useContext, useEffect } from "react";
 import { ContactContext } from "../../contexts/ContactContext";
 import styles from "./RowContacts.module.css";
-import { Link , useParams} from "react-router-dom";
-import { getContacts} from "../../services/ContactService";
+import { Link, useParams } from "react-router-dom";
+import { getContacts } from "../../services/ContactService";
 
 export default function RowContacts() {
-    const { id } = useParams(); 
-    const { deleteContactState } = useContext(ContactContext);
-    const { contacts, setContacts, setError } = useContext(ContactContext);
-    
+    const { id } = useParams();
+    const { contacts, setContacts, setError, deleteContactState } = useContext(ContactContext);
+
     useEffect(() => {
         const fetchData = async () => {
-            if (id) { 
+            if (id) {
                 try {
-                    const data = await getContacts(id); 
+                    const data = await getContacts(id);
+                    console.log("Dados recebidos:", data);  // <-- Debug
                     setContacts(data);
                 } catch (error) {
                     setError(error.message);
@@ -25,15 +25,20 @@ export default function RowContacts() {
 
     const handleDelete = async (id) => {
         if (window.confirm("Tem certeza que deseja excluir este contato?")) {
-            await deleteContactState(id); 
+            await deleteContactState(id);
             window.location.reload();
         }
     };
 
-    
+
     return (
         <div>
-            {contacts.length === 0 ? ( 
+            <div className={styles.divButton}>
+                        <Link to={`/createContact/${id}`}>
+                            <button className={styles.btnAddContact}>Adicionar Contato</button>
+                        </Link>
+            </div>
+            {!contacts || contacts.length === 0 ? (
                 <p>Nenhum contato encontrado.</p>
             ) : (
                 <table className={styles.table}>
@@ -53,10 +58,10 @@ export default function RowContacts() {
                                 <td>{contact.observacao}</td>
                                 <td className={styles.actions}>
                                     <Link to={`/contacts/update/${contact.id}`}>
-                                        <button className={styles.btnPrimary}>Editar</button>
+                                        <button className={styles.btnContact}>Editar</button>
                                     </Link>
-                                    <button 
-                                        className={styles.btnDanger} 
+                                    <button
+                                        className={styles.btnContact}
                                         onClick={() => handleDelete(contact.id)}
                                     >
                                         Excluir

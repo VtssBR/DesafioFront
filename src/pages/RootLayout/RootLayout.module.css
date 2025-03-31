@@ -42,3 +42,20 @@
   color: #ddd;
   margin-top: auto; 
 }
+
+
+.btnLayout {
+  padding: 15px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #7B3F99;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btnLayout:hover {
+  opacity: 0.8;
+  background-color:  #6e1b97
+}

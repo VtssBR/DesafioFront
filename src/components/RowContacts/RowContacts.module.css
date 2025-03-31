@@ -30,8 +30,14 @@
   display: flex;
   gap: 10px;
 }
+.divButton {
+  display: flex;
+  justify-content: flex-end;
+  width: 80%; /* Igual à largura da tabela */
+  margin: 20px auto;
+}
 
-button {
+.btnContact {
   padding: 8px 12px;
   border: none;
   border-radius: 8px;
@@ -42,7 +48,23 @@ button {
   transition: 0.3s;
 }
 
-button:hover {
+.btnContact:hover {
+  opacity: 0.8;
+  background-color:  #6e1b97
+}
+
+.btnAddContact {
+  padding: 20px 30px;
+  border: none;
+  border-radius: 8px;
+  background-color: #7B3F99;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btnAddContact:hover {
   opacity: 0.8;
   background-color:  #6e1b97
 }

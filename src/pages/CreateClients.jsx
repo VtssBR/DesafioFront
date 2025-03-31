@@ -1,6 +1,6 @@
-import FormCreateClients from "../components/FormCreateClients/FormCreateCliens";
+import FormCreateClients from "../components/FormCreateClients/FormCreateClients";
 
-export default function ListClients() {
+export default function CreateClients() {
 
     return (
        <>

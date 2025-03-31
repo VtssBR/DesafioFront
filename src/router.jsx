@@ -4,6 +4,7 @@ import CreateClients from "./pages/CreateClients";
 import UpdateClients from "./pages/UpdateClients"; 
 import RootLayout from "./pages/RootLayout/RootLayout"
 import ListContacts from "./pages/ListContacts"
+import CreateContacts from "./pages/CreateContacts"
 
 const router = createBrowserRouter([   {
     path: "/", 
@@ -12,7 +13,8 @@ const router = createBrowserRouter([   {
         { index: true, element: <ListClients /> },
         { path: "create", element: <CreateClients /> },
         { path: "update/:id", element: <UpdateClients /> },
-        { path: "list/:id", element: <ListContacts /> }
+        { path: "list/:id", element: <ListContacts /> },
+        { path: "createContact/:id", element: <CreateContacts /> }
     ]
 }
 ]);
