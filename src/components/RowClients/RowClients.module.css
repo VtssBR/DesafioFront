@@ -31,6 +31,13 @@
   gap: 10px;
 }
 
+.divButton {
+  display: flex;
+  justify-content: flex-end;
+  width: 80%; /* Igual à largura da tabela */
+  margin: 20px auto;
+}
+
 .btnClients {
   padding: 8px 12px;
   border: none;
@@ -43,6 +50,22 @@
 }
 
 .btnClients:hover {
+  opacity: 0.8;
+  background-color:  #6e1b97
+}
+
+.btnAddClients {
+  padding: 20px 30px;
+  border: none;
+  border-radius: 8px;
+  background-color: #7B3F99;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btnAddClients:hover {
   opacity: 0.8;
   background-color:  #6e1b97
 }

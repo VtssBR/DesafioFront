@@ -1,10 +1,9 @@
-import { Link, Outlet, useLocation} from "react-router-dom";
+import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import styles from "./RootLayout.module.css";
 
-
 export default function RootLayout() {
-  const location = useLocation();
-
+  const navigate = useNavigate();
+  const location = useLocation(); 
 
   return (
     <div className={styles.layout}>
@@ -14,12 +13,11 @@ export default function RootLayout() {
             <Link to="/">
               <button className={styles.btnLayout}>Início</button>
             </Link>
-            {location.pathname == "/" && (
-                <Link to="/create">
-                  <button className={styles.btnLayout}>Criar Cliente</button>
-                </Link>
-              )
-            }
+            {location.pathname !== "/" && (
+              <button className={styles.btnLayout} onClick={() => navigate(-1)}>
+              Voltar
+            </button>
+            )}
           </nav>
         </div>
       </header>
@@ -33,4 +31,3 @@ export default function RootLayout() {
     </div>
   );
 }
-

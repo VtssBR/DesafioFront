@@ -1,23 +1,28 @@
 import { useContext } from "react";
 import { ClientContext } from "../../contexts/ClientContext";
 import styles from "./RowClients.module.css";
-import { Link } from "react-router-dom";
+import { Link , useParams} from "react-router-dom";
 
 export default function RowClients() {
-    const { clients, setClients } = useContext(ClientContext);
-    const {deleteClientState} = useContext(ClientContext)
+    const { clients } = useContext(ClientContext);
+    const { deleteClientState } = useContext(ClientContext)
 
     const handleDelete = async (id) => {
         if (window.confirm("Tem certeza que deseja excluir este cliente?")) {
-            await deleteClientState(id); 
+            await deleteClientState(id);
             window.location.reload();
-            
+
         }
     };
 
     return (
         <div>
-            {clients.length === 0 ? ( 
+            <div className={styles.divButton}>
+                <Link to={`/create/`}>
+                    <button className={styles.btnAddClients}>Adicionar Cliente</button>
+                </Link>
+            </div>
+            {clients.length === 0 ? (
                 <p>Nenhum cliente encontrado.</p>
             ) : (
                 <table className={styles.table}>
@@ -39,8 +44,8 @@ export default function RowClients() {
                                 <td>{client.endereco}</td>
                                 <td className={styles.actions}>
                                     <Link to={`/update/${client.id}`}><button className={styles.btnClients}>Editar</button></Link>
-                                    <button 
-                                        className={styles.btnClients} 
+                                    <button
+                                        className={styles.btnClients}
                                         onClick={() => handleDelete(client.id)}
                                     >Excluir</button>
                                     <Link to={`/list/${client.id}`}><button className={styles.btnClients}>Visualizar Contatos</button></Link>
