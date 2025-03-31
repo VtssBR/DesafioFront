@@ -70,7 +70,7 @@ export const ClientProvider = ({ children }) => {
 
 
     return (
-        <ClientContext.Provider value={{ clients, client, createClientState, getClientByIdState, updateClientState, deleteClientState }}>
+        <ClientContext.Provider value={{ clients, client,error, setError, createClientState, getClientByIdState, updateClientState, deleteClientState }}>
             {children}
         </ClientContext.Provider>
     );

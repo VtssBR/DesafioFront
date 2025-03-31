@@ -23,7 +23,7 @@ export default function RowClients() {
                 </Link>
             </div>
             {clients.length === 0 ? (
-                <p>Nenhum cliente encontrado.</p>
+                <p className={styles.txtNotFound}>Nenhum cliente encontrado.</p>
             ) : (
                 <table className={styles.table}>
                     <thead>

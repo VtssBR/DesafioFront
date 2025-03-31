@@ -8,7 +8,8 @@ export default function RowContacts() {
     const { id } = useParams();
     const { contacts, setContacts, setError, deleteContactState } = useContext(ContactContext);
 
-    useEffect(() => {
+    // Utilizado para listagem dos clientes por Id, utilizado diretamente no componente para apenas exibir quando o componente for chamado
+    useEffect(() => { 
         const fetchData = async () => {
             if (id) {
                 try {
@@ -38,7 +39,7 @@ export default function RowContacts() {
                 </Link>
             </div>
             {!contacts || contacts.length === 0 ? (
-                <p>Nenhum contato encontrado.</p>
+                <p className={styles.txtNotFound}>Nenhum contato encontrado.</p>
             ) : (
                 <table className={styles.table}>
                     <thead>

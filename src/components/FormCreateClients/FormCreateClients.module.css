@@ -80,3 +80,9 @@
     color: #999;
     opacity: 1;
 }
+
+.errorMessage {
+    color: red;
+    font-size: 14px;
+    margin-top: 8px;
+}

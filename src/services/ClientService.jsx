@@ -6,13 +6,22 @@ export const getClients = async () => {
     return response.json();
 }
 
+export const getClientsByNameOrCpf = async (nome, cpf) => {
+    const response = await fetch(`${URL}/search?nome=${nome}&cpf=${cpf}`)
+    if (!response.ok) throw new Error("Erro ao buscar clientes");
+    return response.json();
+}
+
 export const addClients = async (newClient) => {
     const response = await fetch(`${URL}/create`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newClient)
     })
-    if (!response.ok) throw new Error("Erro ao criar clientes");
+    if (!response.ok) {
+        const errorData = await response.json(); 
+        throw new Error(errorData.message || "Erro ao criar cliente"); 
+    }
     return response.json();
 }
 
@@ -31,7 +40,10 @@ export const attClient = async (clientUpdated, id) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(clientUpdated)
     })
-    if (!response.ok) throw new Error("Erro ao atualizar cliente");
+    if (!response.ok) {
+        const errorData = await response.json(); 
+        throw new Error(errorData.message || "Erro ao atualizar cliente"); 
+    }
     return response.json();
 }
 

@@ -12,7 +12,10 @@ export const addContacts = async (newContact) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newContact)
     })
-    if (!response.ok) throw new Error("Erro ao criar contato");
+    if (!response.ok) {
+        const errorData = await response.json(); 
+        throw new Error(errorData.message || "Erro ao criar contato"); 
+    }
     return response.json();
 }
 
@@ -21,7 +24,7 @@ export const getContactById = async (id) => {
         method: 'GET',
         headers: { "Content-Type": "application/json" }
     })
-    if (!response.ok) throw new Error("Erro ao buscar cliente");
+    if (!response.ok) throw new Error("Erro ao buscar contato");
     return response.json();
 }
 
@@ -31,7 +34,10 @@ export const attContact = async (contactUpdated, id) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(contactUpdated)
     })
-    if (!response.ok) throw new Error("Erro ao contato cliente");
+    if (!response.ok) {
+        const errorData = await response.json(); 
+        throw new Error(errorData.message || "Erro ao criar contato"); 
+    }
     return response.json();
 }
 

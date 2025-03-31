@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useState} from "react";
 import { ClientContext } from "../../contexts/ClientContext";
 import styles from "./FormCreateClients.module.css";
 
 export default function FormCreateClients() {
-    const { createClientState } = useContext(ClientContext);
+    const { createClientState, error, setError } = useContext(ClientContext);
     const [formData, setFormData] = useState({
         nome: "",
         cpf: "",
@@ -12,38 +12,18 @@ export default function FormCreateClients() {
     });
 
     const handleInputChange = (event) => {
-        const fieldName = event.target.name;
-        const inputValue = event.target.value;
-
-        setFormData((previousData) => ({
-            ...previousData,
-            [fieldName]: inputValue
-        }));
-
+        const { name, value } = event.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+        setError("")
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        const clientData = {
-            nome: formData.nome,
-            cpf: formData.cpf,
-            dataNascimento: formData.dataNascimento,
-            endereco: formData.endereco
-        };
-
-
         try {
-            await createClientState(clientData);
-            console.log("Cliente criado com sucesso:", clientData);
-            setFormData({
-                nome: "",
-                cpf: "",
-                dataNascimento: "",
-                endereco: ""
-            });
+            await createClientState(formData);
+            setFormData({ nome: "", cpf: "", dataNascimento: "", endereco: "" });
         } catch (error) {
-            console.error("Erro ao criar cliente:", error);
+            console.error("Erro ao criar cliente:", error.message);
         }
     };
 
@@ -81,6 +61,7 @@ export default function FormCreateClients() {
                 required
                 className={styles.dateInput}
             />
+
             <label htmlFor="endereco" className={styles.label}>Endereço:</label>
             <input
                 type="text"
@@ -90,6 +71,9 @@ export default function FormCreateClients() {
                 className={styles.input}
                 required
             />
+
+            {/* Exibir mensagem de erro */}
+            {error && <p className={styles.errorMessage}>{error}</p>}
 
             <button type="submit" className={styles.submitButton}>
                 Criar Cliente

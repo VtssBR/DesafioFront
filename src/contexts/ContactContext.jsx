@@ -54,7 +54,7 @@ export const ContactProvider = ({ children }) => {
     };
 
     return (
-        <ContactContext.Provider value={{ contacts, contact, setError, setContacts, getContactByIdState, createContactState, updateContactState, deleteContactState }}>
+        <ContactContext.Provider value={{ contacts, contact,error, setError, setContacts, getContactByIdState, createContactState, updateContactState, deleteContactState }}>
             {children}
         </ContactContext.Provider>
     );
