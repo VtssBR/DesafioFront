@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import {addContacts, getContactById, attContact, deleteContact } from "../services/ContactService";
+import { addContacts, getContactById, attContact, deleteContact } from "../services/ContactService";
 
 export const ContactContext = createContext({})
 
@@ -17,15 +17,15 @@ export const ContactProvider = ({ children }) => {
         }
     };
 
-     const getContactByIdState = async (id) => {
-            try {
-                const contactId = await getContactById(id)
-                setContact(contactId)
-            } catch (error) {
-                setError(error.message)
-            }
-    
+    const getContactByIdState = async (id) => {
+        try {
+            const contactId = await getContactById(id)
+            setContact(contactId)
+        } catch (error) {
+            setError(error.message)
         }
+
+    }
 
 
     const updateContactState = async (formUpdateData, id) => {
@@ -54,7 +54,7 @@ export const ContactProvider = ({ children }) => {
     };
 
     return (
-        <ContactContext.Provider value={{ contacts, contact, setError, setContacts, getContactByIdState,  createContactState, updateContactState, deleteContactState }}>
+        <ContactContext.Provider value={{ contacts, contact, setError, setContacts, getContactByIdState, createContactState, updateContactState, deleteContactState }}>
             {children}
         </ContactContext.Provider>
     );

@@ -1,7 +1,7 @@
 const URL = "http://localhost:8080/api/contact"
 
 export const getContacts = async (id) => {
-    const response =  await fetch(`${URL}/list/${id}`)
+    const response = await fetch(`${URL}/list/${id}`) //Listagem baseada no id do cliente
     if (!response.ok) throw new Error("Erro ao buscar contatos");
     return response.json();
 }
@@ -16,18 +16,18 @@ export const addContacts = async (newContact) => {
     return response.json();
 }
 
- export const getContactById = async (id) =>{
-    const response = await fetch(`${URL}/${id}`,{
+export const getContactById = async (id) => {
+    const response = await fetch(`${URL}/${id}`, {
         method: 'GET',
         headers: { "Content-Type": "application/json" }
     })
     if (!response.ok) throw new Error("Erro ao buscar cliente");
     return response.json();
-} 
+}
 
 export const attContact = async (contactUpdated, id) => {
-    const response = await fetch(`${URL}/update/${id}`,{
-        method:'PUT',
+    const response = await fetch(`${URL}/update/${id}`, {
+        method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(contactUpdated)
     })
@@ -36,8 +36,8 @@ export const attContact = async (contactUpdated, id) => {
 }
 
 export const deleteContact = async (id) => {
-    const response = await fetch(`${URL}/delete/${id}`,{
-        method:'DELETE',
+    const response = await fetch(`${URL}/delete/${id}`, {
+        method: 'DELETE',
         headers: { "Content-Type": "application/json" }
     })
     if (!response.ok) throw new Error("Erro ao excluir contato");

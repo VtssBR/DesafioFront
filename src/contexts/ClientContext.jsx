@@ -47,12 +47,12 @@ export const ClientProvider = ({ children }) => {
         try {
             const updatedClient = await attClient(formUpdateData, id);
             setClients((prevClients) =>
-                prevClients.map((client) => 
+                prevClients.map((client) =>
                     client.id === id ? updatedClient : client
                 )
             );
             setClient(updatedClient);
-            
+
         } catch (error) {
             setError(error.message);
         }
@@ -70,7 +70,7 @@ export const ClientProvider = ({ children }) => {
 
 
     return (
-        <ClientContext.Provider value={{ clients, client, createClientState, getClientByIdState, updateClientState , deleteClientState }}>
+        <ClientContext.Provider value={{ clients, client, createClientState, getClientByIdState, updateClientState, deleteClientState }}>
             {children}
         </ClientContext.Provider>
     );

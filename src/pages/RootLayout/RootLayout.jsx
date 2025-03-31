@@ -3,7 +3,7 @@ import styles from "./RootLayout.module.css";
 
 export default function RootLayout() {
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
 
   return (
     <div className={styles.layout}>
@@ -15,8 +15,8 @@ export default function RootLayout() {
             </Link>
             {location.pathname !== "/" && (
               <button className={styles.btnLayout} onClick={() => navigate(-1)}>
-              Voltar
-            </button>
+                Voltar
+              </button>
             )}
           </nav>
         </div>

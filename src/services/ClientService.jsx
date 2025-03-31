@@ -1,7 +1,7 @@
 const URL = "http://localhost:8080/api/client"
 
 export const getClients = async () => {
-    const response =  await fetch(`${URL}/list`)
+    const response = await fetch(`${URL}/list`)
     if (!response.ok) throw new Error("Erro ao buscar clientes");
     return response.json();
 }
@@ -16,8 +16,8 @@ export const addClients = async (newClient) => {
     return response.json();
 }
 
-export const getClientById = async (id) =>{
-    const response = await fetch(`${URL}/${id}`,{
+export const getClientById = async (id) => {
+    const response = await fetch(`${URL}/${id}`, {
         method: 'GET',
         headers: { "Content-Type": "application/json" }
     })
@@ -26,8 +26,8 @@ export const getClientById = async (id) =>{
 }
 
 export const attClient = async (clientUpdated, id) => {
-    const response = await fetch(`${URL}/update/${id}`,{
-        method:'PUT',
+    const response = await fetch(`${URL}/update/${id}`, {
+        method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(clientUpdated)
     })
@@ -36,8 +36,8 @@ export const attClient = async (clientUpdated, id) => {
 }
 
 export const deleteClient = async (id) => {
-    const response = await fetch(`${URL}/delete/${id}`,{
-        method:'DELETE',
+    const response = await fetch(`${URL}/delete/${id}`, {
+        method: 'DELETE',
         headers: { "Content-Type": "application/json" }
     })
     if (!response.ok) throw new Error("Erro ao excluir cliente");

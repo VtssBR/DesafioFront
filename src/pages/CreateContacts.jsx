@@ -3,8 +3,8 @@ import FormCreateContacts from "../components/FormCreateContacts/FormCreateConta
 export default function CreateContacts() {
 
     return (
-       <>
-        <FormCreateContacts/>
-       </>
+        <>
+            <FormCreateContacts />
+        </>
     );
 }
