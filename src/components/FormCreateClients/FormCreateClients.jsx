@@ -1,20 +1,24 @@
-import { useContext, useState} from "react";
+import { useContext, useState } from "react";
 import { ClientContext } from "../../contexts/ClientContext";
 import styles from "./FormCreateClients.module.css";
+import { IMaskInput } from "react-imask";
 
 export default function FormCreateClients() {
     const { createClientState, error, setError } = useContext(ClientContext);
+    const [successMessage, setSuccessMessage] = useState("");
     const [formData, setFormData] = useState({
         nome: "",
         cpf: "",
         dataNascimento: "",
         endereco: ""
     });
+     
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-        setError("")
+        setError("");
+        setSuccessMessage("");
     };
 
     const handleSubmit = async (event) => {
@@ -22,6 +26,7 @@ export default function FormCreateClients() {
         try {
             await createClientState(formData);
             setFormData({ nome: "", cpf: "", dataNascimento: "", endereco: "" });
+            setSuccessMessage("Cliente criado com sucesso!");
         } catch (error) {
             console.error("Erro ao criar cliente:", error.message);
         }
@@ -42,14 +47,13 @@ export default function FormCreateClients() {
             />
 
             <label htmlFor="cpf" className={styles.label}>CPF:</label>
-            <input
-                type="text"
+            <IMaskInput
+                mask="000.000.000-00"
                 name="cpf"
                 value={formData.cpf}
                 onChange={handleInputChange}
                 className={styles.input}
                 required
-                maxLength="14"
             />
 
             <label htmlFor="dataNascimento" className={styles.label}>Data de Nascimento:</label>
@@ -72,8 +76,9 @@ export default function FormCreateClients() {
                 required
             />
 
-            {/* Exibir mensagem de erro */}
             {error && <p className={styles.errorMessage}>{error}</p>}
+
+            {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
 
             <button type="submit" className={styles.submitButton}>
                 Criar Cliente

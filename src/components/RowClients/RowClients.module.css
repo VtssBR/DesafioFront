@@ -41,7 +41,7 @@
 .divButton {
   display: flex;
   justify-content: flex-end;
-  width: 80%; /* Igual à largura da tabela */
+  width: 80%; 
   margin: 20px auto;
 }
 
@@ -75,4 +75,24 @@
 .btnAddClients:hover {
   opacity: 0.8;
   background-color:  #6e1b97
+}
+
+
+.topBar {
+  align-items: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+  display: flex;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.searchInput {
+  padding: 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 350px;
+  background-color: #2a2a2a;
+  color:white;
 }

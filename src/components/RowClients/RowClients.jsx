@@ -1,28 +1,41 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ClientContext } from "../../contexts/ClientContext";
 import styles from "./RowClients.module.css";
 import { Link } from "react-router-dom";
 
 export default function RowClients() {
-    const { clients } = useContext(ClientContext);
-    const { deleteClientState } = useContext(ClientContext)
+    const { clients, deleteClientState } = useContext(ClientContext);
+    const [search, setSearch] = useState("");
 
     const handleDelete = async (id) => {
         if (window.confirm("Tem certeza que deseja excluir este cliente?")) {
             await deleteClientState(id);
             window.location.reload();
-
         }
     };
 
+    const filteredClients = clients.filter(client =>
+        client.nome.toLowerCase().includes(search.toLowerCase()) || client.cpf.includes(search)
+    );
+
     return (
         <div>
-            <div className={styles.divButton}>
-                <Link to={`/create/`}>
-                    <button className={styles.btnAddClients}>Adicionar Cliente</button>
-                </Link>
+            <div className={styles.topBar}>
+                <input
+                    type="text"
+                    placeholder="Buscar por Nome ou CPF"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className={styles.searchInput}
+                />
+                <div className={styles.divButton}>
+                    <Link to={`/create/`}>
+                        <button className={styles.btnAddClients}>Adicionar Cliente</button>
+                    </Link>
+                </div>
             </div>
-            {clients.length === 0 ? (
+
+            {filteredClients.length === 0 ? (
                 <p className={styles.txtNotFound}>Nenhum cliente encontrado.</p>
             ) : (
                 <table className={styles.table}>
@@ -36,11 +49,11 @@ export default function RowClients() {
                         </tr>
                     </thead>
                     <tbody>
-                        {clients.map((client) => (
+                        {filteredClients.map((client) => (
                             <tr key={client.id}>
                                 <td>{client.nome}</td>
                                 <td>{client.cpf}</td>
-                                <td>{client.dataNascimento}</td>
+                                <td>{new Date(client.dataNascimento).toLocaleDateString("pt-BR")}</td>
                                 <td>{client.endereco}</td>
                                 <td className={styles.actions}>
                                     <Link to={`/update/${client.id}`}><button className={styles.btnClients}>Editar</button></Link>

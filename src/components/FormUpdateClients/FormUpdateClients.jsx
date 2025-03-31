@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ClientContext } from "../../contexts/ClientContext";
 import styles from "./FormUpdateClients.module.css";
+import {IMaskInput} from "react-imask";
 
 export default function FormUpdateClients() {
     const { id } = useParams();
@@ -45,7 +46,6 @@ export default function FormUpdateClients() {
 
         try {
             await updateClientState(clientData, id);
-            console.log("Cliente atualizado com sucesso:", clientData);
 
             setFormData({
                 nome: "",
@@ -54,6 +54,7 @@ export default function FormUpdateClients() {
                 endereco: ""
             });
             setSelectedFields({ nome: false, cpf: false, dataNascimento: false, endereco: false });
+            window.location.reload();
         } catch (error) {
             console.error("Erro ao atualizar cliente:", error);
         }
@@ -117,8 +118,8 @@ export default function FormUpdateClients() {
             {selectedFields.cpf && (
                 <>
                     <label htmlFor="cpf" className={styles.label}>CPF:</label>
-                    <input
-                        type="text"
+                    <IMaskInput
+                        mask="000.000.000-00"
                         name="cpf"
                         value={formData.cpf}
                         onChange={handleInputChange}
