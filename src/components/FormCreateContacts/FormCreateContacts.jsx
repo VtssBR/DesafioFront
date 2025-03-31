@@ -14,19 +14,20 @@ export default function FormCreateContacts() {
         observacao: ""
     });
 
+    
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
         }));
-        setError(""); // Limpa o erro ao alterar o input
-        setSuccessMessage(""); // Limpa a mensagem de sucesso ao alterar o input
+        setError("");
+        setSuccessMessage("")
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+ 
         const contactData = {
             clientId: Number(clientId),
             tipo: formData.tipo,
@@ -35,22 +36,11 @@ export default function FormCreateContacts() {
         };
 
         try {
-            // Limpa mensagens anteriores antes de tentar criar o contato
-            setError("");
-            setSuccessMessage("");
-            
             await createContactState(contactData);
-
-            // Se a criação for bem-sucedida, exiba a mensagem de sucesso
-            setSuccessMessage("Contato criado com sucesso!"); 
-            console.log("SucessMessage do bloco try:", successMessage)
-            setFormData({ tipo: "", valor: "", observacao: "" }); // Limpa os dados do formulário
-        } catch (error) {
-            // Se ocorrer um erro, exiba a mensagem de erro
+            setFormData({ tipo: "", valor: "", observacao: "" });
+            setSuccessMessage("Contato criado com sucesso")
+        } catch(error) {
             console.error("Erro ao criar contato:", error.message);
-            console.log("error message do bloco catch: ", error)
-            setError("Erro ao criar contato. Tente novamente."); // Define a mensagem de erro
-            setSuccessMessage(""); // Limpa a mensagem de sucesso se houver erro
         }
     };
 
@@ -101,8 +91,8 @@ export default function FormCreateContacts() {
                 className={styles.input}
             />
 
-            {/* Exibição de mensagens de erro e sucesso */}
             {error && <p className={styles.errorMessage}>{error}</p>}
+            
             {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
 
             <button type="submit" className={styles.submitButton}>
