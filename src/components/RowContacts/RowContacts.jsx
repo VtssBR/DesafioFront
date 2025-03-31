@@ -13,7 +13,6 @@ export default function RowContacts() {
             if (id) {
                 try {
                     const data = await getContacts(id);
-                    console.log("Dados recebidos:", data);  // <-- Debug
                     setContacts(data);
                 } catch (error) {
                     setError(error.message);
@@ -57,7 +56,7 @@ export default function RowContacts() {
                                 <td>{contact.valor}</td>
                                 <td>{contact.observacao}</td>
                                 <td className={styles.actions}>
-                                    <Link to={`/contacts/update/${contact.id}`}>
+                                    <Link to={`/updateContact/${contact.id}`}>
                                         <button className={styles.btnContact}>Editar</button>
                                     </Link>
                                     <button

@@ -16,14 +16,14 @@ export const addContacts = async (newContact) => {
     return response.json();
 }
 
-/* export const getClientById = async (id) =>{
+ export const getContactById = async (id) =>{
     const response = await fetch(`${URL}/${id}`,{
         method: 'GET',
         headers: { "Content-Type": "application/json" }
     })
     if (!response.ok) throw new Error("Erro ao buscar cliente");
     return response.json();
-} */
+} 
 
 export const attContact = async (contactUpdated, id) => {
     const response = await fetch(`${URL}/update/${id}`,{
