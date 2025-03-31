@@ -60,7 +60,6 @@ export default function FormUpdateContacts() {
                     value={formData.valor}
                     onAccept={handleInputChange}
                     className={styles.input}
-                    required
                 />
             ) : (
                 <input
@@ -69,7 +68,6 @@ export default function FormUpdateContacts() {
                     value={formData.valor}
                     onChange={handleInputChange}
                     className={styles.input}
-                    required
                 />
             )}
 
