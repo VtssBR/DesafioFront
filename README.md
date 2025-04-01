@@ -40,7 +40,14 @@ Antes de iniciar, certifique-se de ter os seguintes pré-requisitos instalados:
    ```bash
    npm install  # ou yarn install
    ```
-
+   
+   **Dependências de Produção:**
+   ```bash
+   npm install react@^19.0.0 
+   npm install react-dom@^19.0.0 
+   npm install react-imask@^7.6.1 
+   npm install react-router-dom@^7.4.0
+   ```
 ---
 
 ## 4️⃣ Estrutura do Projeto  
